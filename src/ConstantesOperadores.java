@@ -1,5 +1,5 @@
 
-public class Constantes_Operadores {
+public class ConstantesOperadores {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -11,7 +11,7 @@ public class Constantes_Operadores {
 		
 		System.out.println("En " + cm + "cm hay " + resultado + " pulgadas.");
 		
-		// Declaración de variables en una misma línea
+		// Declaraciï¿½n de variables en una misma lï¿½nea
 		int ope1, ope2, result;
 		
 		ope1 = 8;
