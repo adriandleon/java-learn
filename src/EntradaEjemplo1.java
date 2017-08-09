@@ -16,8 +16,11 @@ public class EntradaEjemplo1 {
 		
 		int edad = entrada.nextInt();
 		
+		entrada.close();
+		
 		System.out.println("Hola " + nombreUsuario + ". El año que viene " +
-		"tendrás " + (edad + 1) + " años");
+		"tendrás " + (edad + 1) + " años.");
+		
 	}
 
 }
