@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class AdivinaNumera {
+public class AdivinaNumero {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -11,7 +11,7 @@ public class AdivinaNumera {
 		
 		int numero = 0, intentos = 0;
 		
-		while (numero != aleatorio) {
+		do {
 			intentos++;
 			
 			System.out.println("Introudce un número, por favor");
@@ -23,7 +23,7 @@ public class AdivinaNumera {
 			else if (aleatorio > numero) {
 				System.out.println("Más alto");
 			}
-		}
+		} while (numero != aleatorio);
 		
 		entrada.close();
 		
