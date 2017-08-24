@@ -5,9 +5,11 @@ public class UsoCoche {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Coche Renault = new Coche(); // Instanciar una clase
+		Coche micoche = new Coche();
 		
-		System.out.println("Este coche tiene " + Renault.ruedas + " ruedas.");
+		micoche.setColor();
+		
+		System.out.println(micoche.getColor());
 	}
 
 }
