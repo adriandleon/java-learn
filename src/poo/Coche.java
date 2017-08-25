@@ -54,4 +54,47 @@ public class Coche {
 			return "El coche tiene asientos de serie";
 		}
 	}
+	
+	public void setClimatizador(boolean climatizador) {
+		this.climatizador = climatizador;
+	}
+	
+	public String getClimatizador() {
+		if (climatizador) {
+			return "El coche incorpora climatizador";
+		}
+		else {
+			return "El coche lleva aire acondicionado";
+		}
+	}
+	
+	public String getPesoTotal() { // Setter and Getter
+		int pesoCarroceria = 500;
+		
+		pesoTotal = pesoPlataforma + pesoCarroceria;
+		
+		if (asientosCuero) {
+			pesoTotal += 50;
+		}
+		
+		if (climatizador) {
+			pesoTotal += 20;
+		}
+		
+		return "El peso total del coche es " + pesoTotal;
+	}
+	
+	public int getPrecioCoche() { // Getter
+		int precioFinal = 10000;
+		
+		if (asientosCuero) {
+			precioFinal += 2000;
+		}
+		
+		if (climatizador) {
+			precioFinal += 1500;
+		}
+		
+		return precioFinal;
+	}
 }
