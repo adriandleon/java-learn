@@ -6,9 +6,9 @@ public class Coche {
 	private int ancho;
 	private int motor;
 	private int pesoPlataforma;
-	String color;
-	int pesoTotal;
-	boolean asientosCuero, climatizador;
+	private String color;
+	private int pesoTotal;
+	private boolean asientosCuero, climatizador;
 	
 	// Método constructor
 	public Coche() {
@@ -27,11 +27,31 @@ public class Coche {
 		return "El largo del coche es " + largo;
 	}
 	
-	public void setColor() { // Setter method
-		color = "azul";
+	public void setColor(String _color) { // Setter method
+		color = _color;
 	}
 	
 	public String getColor() {
 		return "El color del coche es " + color;
+	}
+	
+	public String getDatosGenerales() {
+		return "La plataforma del vehículo tiene " + ruedas + " ruedas. Mide " +
+				largo/1000 + " metros de largo con un ancho de " + ancho + " ce"
+				+ "ntímetros y un peso de plataforma de " + pesoPlataforma + " "
+				+ "kilos.";
+	}
+	
+	public void setAsientosCuero(boolean asientosCuero) {
+		this.asientosCuero = asientosCuero;
+	}
+	
+	public String getAsientosCuero() {
+		if (asientosCuero) {
+			return "El coche tiene asientos de cuero";
+		}
+		else {
+			return "El coche tiene asientos de serie";
+		}
 	}
 }

@@ -7,9 +7,15 @@ public class UsoCoche {
 		
 		Coche micoche = new Coche();
 		
-		micoche.setColor();
+		micoche.setColor("negro");
+		
+		System.out.println(micoche.getDatosGenerales());
 		
 		System.out.println(micoche.getColor());
+		
+		micoche.setAsientosCuero(true);
+		
+		System.out.println(micoche.getAsientosCuero());
 	}
 
 }
