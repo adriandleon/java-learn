@@ -15,13 +15,12 @@ public class Pruebas {
 		
 		trabajador1.setSeccion("Recursos Humanos");
 		
-		System.out.println(trabajador1.getDatos());
+		System.out.println(trabajador1.getDatos() + "\n" 
+				+ trabajador2.getDatos() + "\n"
+				+ trabajador3.getDatos() + "\n"
+				+ trabajador4.getDatos() + "\n");
 		
-		System.out.println(trabajador2.getDatos());
-		
-		System.out.println(trabajador3.getDatos());
-		
-		System.out.println(trabajador4.getDatos());
+		System.out.println("El Id siguiente es: " + EmpleadoPrueba.getNextId());
 	}
 
 }
@@ -53,6 +52,10 @@ class EmpleadoPrueba {
 	public String getDatos() { // getter
 		return "El nombre es " + nombre + ", la seccion es " + seccion + " y "
 				+ "el Id " + Id;
+	}
+	
+	public static int getNextId() {
+		return IDsiguiente;
 	}
 	
 }
