@@ -72,3 +72,21 @@ class Empleado {
 	private Date altaContrato;
 
 }
+
+
+class Jefatura extends Empleado {
+	
+	private double incentivo;
+	
+	public Jefatura(String name, int salary, int year, int month, int day) {
+		super(name, salary, year, month, day);
+	}
+	
+	public void setIncentivo(double incentivo) {
+		this.incentivo = incentivo;
+	}
+	
+	public double getSueldo() {
+		return super.getSueldo() + incentivo;
+	}
+}
