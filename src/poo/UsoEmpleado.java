@@ -7,7 +7,11 @@ public class UsoEmpleado {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Empleado[] misEmpleados = new Empleado[4];
+		Jefatura jefeRH = new Jefatura("Adrian", 240000, 2006, 9, 25);
+		
+		jefeRH.setIncentivo(2570);
+		
+		Empleado[] misEmpleados = new Empleado[6];
 		
 		misEmpleados[0] = new Empleado("Paco Gomez", 85000, 1990, 12, 17);
 		
@@ -16,6 +20,10 @@ public class UsoEmpleado {
 		misEmpleados[2] = new Empleado("Maria Martin", 105000, 2002, 03, 15);
 		
 		misEmpleados[3] = new Empleado("Anthony Fernandez");
+		
+		misEmpleados[4] = jefeRH; // Polimorfismo. Principio de sustitución
+		
+		misEmpleados[5] = new Jefatura("Luisana", 95500, 1999, 5, 26);
 		
 		for (Empleado e: misEmpleados) {
 			e.subeSueldo(5);
