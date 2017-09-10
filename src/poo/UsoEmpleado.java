@@ -25,6 +25,10 @@ public class UsoEmpleado {
 		
 		misEmpleados[5] = new Jefatura("Luisana", 95500, 1999, 5, 26);
 		
+		Jefatura jefeFinanzas = (Jefatura)misEmpleados[5];
+		
+		jefeFinanzas.setIncentivo(55000);
+		
 		for (Empleado e: misEmpleados) {
 			e.subeSueldo(5);
 		}
@@ -86,7 +90,7 @@ class Jefatura extends Empleado {
 	
 	private double incentivo;
 	
-	public Jefatura(String name, int salary, int year, int month, int day) {
+	public Jefatura(String name, double salary, int year, int month, int day) {
 		super(name, salary, year, month, day);
 	}
 	
