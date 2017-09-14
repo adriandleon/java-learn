@@ -33,6 +33,8 @@ public class UsoEmpleado {
 			e.subeSueldo(5);
 		}
 		
+		Arrays.sort(misEmpleados);
+		
 		for (Empleado e: misEmpleados) {
 			System.out.println("Nombre: " + e.getNombre() + " Sueldo: "
 					+ e.getSueldo()	+ " Fecha de Alta: " + e.getAltaContrato());
@@ -42,7 +44,7 @@ public class UsoEmpleado {
 
 }
 
-class Empleado {
+class Empleado implements Comparable {
 	
 	// Metodo Constructor
 	public Empleado(String nom, double sue, int agno, int mes, int dia) {
@@ -76,6 +78,16 @@ class Empleado {
 	public void subeSueldo(double porcentaje) {
 		double aumento = sueldo * porcentaje / 100;
 		sueldo += aumento;
+	}
+	
+	public int compareTo(Object miObjeto) {
+		Empleado otroEmpleado = (Empleado)miObjeto;
+		
+		if (this.sueldo < otroEmpleado.sueldo) return -1;
+		
+		if (this.sueldo > otroEmpleado.sueldo) return 1;
+		
+		return 0;
 	}
 	
 	// Atributos/Propiedades
