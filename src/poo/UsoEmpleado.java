@@ -29,6 +29,8 @@ public class UsoEmpleado {
 		
 		jefeFinanzas.setIncentivo(55000);
 		
+		System.out.println(jefeFinanzas.tomarDecisiones("dar más días de vacaciones a los empleados"));
+		
 		for (Empleado e: misEmpleados) {
 			e.subeSueldo(5);
 		}
@@ -98,7 +100,7 @@ class Empleado implements Comparable {
 }
 
 
-class Jefatura extends Empleado {
+class Jefatura extends Empleado implements Jefes {
 	
 	private double incentivo;
 	
@@ -112,5 +114,9 @@ class Jefatura extends Empleado {
 	
 	public double getSueldo() {
 		return super.getSueldo() + incentivo;
+	}
+	
+	public String tomarDecisiones(String decision) {
+		return "Un miembro de la dirección ha tomado la decisión de " + decision;
 	}
 }
