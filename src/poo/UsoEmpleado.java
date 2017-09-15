@@ -31,6 +31,12 @@ public class UsoEmpleado {
 		
 		System.out.println(jefeFinanzas.tomarDecisiones("dar más días de vacaciones a los empleados"));
 		
+		System.out.println("El Jefe " + jefeFinanzas.getNombre() + " tiene un Bonus de "
+				+ jefeFinanzas.setBonus(500));
+		
+		System.out.println("El Empleado " + misEmpleados[3].getNombre() + " tiene un Bonus de "
+				+ misEmpleados[3].setBonus(200));
+		
 		for (Empleado e: misEmpleados) {
 			e.subeSueldo(5);
 		}
@@ -46,7 +52,7 @@ public class UsoEmpleado {
 
 }
 
-class Empleado implements Comparable {
+class Empleado implements Comparable, Trabajadores {
 	
 	// Metodo Constructor
 	public Empleado(String nom, double sue, int agno, int mes, int dia) {
@@ -92,6 +98,10 @@ class Empleado implements Comparable {
 		return 0;
 	}
 	
+	public double setBonus(double gratificacion) {
+		return Trabajadores.baseBonus + gratificacion;
+	}
+	
 	// Atributos/Propiedades
 	private String nombre;
 	private double sueldo;
@@ -119,4 +129,10 @@ class Jefatura extends Empleado implements Jefes {
 	public String tomarDecisiones(String decision) {
 		return "Un miembro de la dirección ha tomado la decisión de " + decision;
 	}
+	
+	public double setBonus(double gratificacion) {
+		double prima = 2000;
+		return Trabajadores.baseBonus + gratificacion + prima;
+	}
+	
 }
