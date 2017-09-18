@@ -2,6 +2,8 @@ package poo;
 
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+
+import java.awt.Toolkit;
 import java.awt.event.*;
 import java.util.Date;
 
@@ -28,5 +30,7 @@ class GetTime implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Date now = new Date();
 		System.out.println("Te pongo la hora cada 5 seg: " + now);
+		
+		Toolkit.getDefaultToolkit().beep();
 	}
 }
