@@ -29,7 +29,7 @@ public class UsoEmpleado {
 		
 		jefeFinanzas.setIncentivo(55000);
 		
-		System.out.println(jefeFinanzas.tomarDecisiones("dar más días de vacaciones a los empleados"));
+		System.out.println(jefeFinanzas.tomarDecisiones("dar mas dias de vacaciones a los empleados"));
 		
 		System.out.println("El Jefe " + jefeFinanzas.getNombre() + " tiene un Bonus de "
 				+ jefeFinanzas.setBonus(500));
