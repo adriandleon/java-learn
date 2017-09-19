@@ -1,5 +1,7 @@
 package graphics;
 
+import java.awt.Frame;
+
 import javax.swing.*;
 
 public class CreatingFrames {
@@ -22,7 +24,17 @@ class MyFrame extends JFrame {
 	
 	public MyFrame() {
 		
-		setSize(500, 380);
+//		setSize(500, 380);
+//		
+//		setLocation(500, 300);
+		
+		setBounds(500, 300, 550, 400);
+		
+//		setResizable(false);
+		
+//		setExtendedState(Frame.MAXIMIZED_BOTH);
+		
+		setTitle("My new window");
 		
 	}
 }
