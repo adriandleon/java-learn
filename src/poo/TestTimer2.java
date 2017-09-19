@@ -11,8 +11,9 @@ public class TestTimer2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Clock myClock = new Clock(3000, true);
-		myClock.running();
+		Clock myClock = new Clock();
+		
+		myClock.running(3000, true);
 		
 		JOptionPane.showMessageDialog(null, "Press Ok to finish");
 		
@@ -24,30 +25,25 @@ public class TestTimer2 {
 
 class Clock {
 	
-	private int interval;
-	private boolean sound;
-	
-	public Clock(int interval, boolean sound) {
-		this.interval = interval;
-		this.sound = sound;
-	}
-	
-	public void running() {
+	public void running(int interval, final boolean sound) {
+		
+		// Local inner class
+		class GetTime2 implements ActionListener {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				Date now = new Date();
+				System.out.println("Time: " + now);
+				
+				if (sound)
+					Toolkit.getDefaultToolkit().beep();
+			}
+		}
+		
 		ActionListener listener = new GetTime2();
 		Timer myTimer = new Timer(interval, listener);
 		myTimer.start();
+		
 	}
 	
-	// Inner class
-	private class GetTime2 implements ActionListener {
-		
-		public void actionPerformed(ActionEvent e) {
-			
-			Date now = new Date();
-			System.out.println("Time: " + now);
-			
-			if (sound)
-				Toolkit.getDefaultToolkit().beep();
-		}
-	}
 }
