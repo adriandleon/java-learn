@@ -17,12 +17,14 @@ public class WritingFrame {
 
 class FrameWithText extends JFrame {
 	
+	private static final long serialVersionUID = 2894587149260059054L;
+
 	public FrameWithText() {
 		
-		setVisible(true);
 		setSize(600, 450);
 		setLocation(400, 200);
-		setTitle("First Text");
+		setTitle("First Text in Frame");
+		setVisible(true);
 		
 		// Add panel to frame
 		Panel myPanel = new Panel();
@@ -32,12 +34,16 @@ class FrameWithText extends JFrame {
 
 
 class Panel extends JPanel {
-	
+
+	private static final long serialVersionUID = 8264242919023264058L;
+
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
 		
-		g.drawString("We are learning Swing!", 100, 100);
+		g.drawString("We are learning Swing!", 200, 100);
+		
+		g.drawLine(10, 120, 590, 120);
 		
 	}
 	
