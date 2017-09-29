@@ -11,11 +11,9 @@ public class TestGraphic {
 		
 		FrameWithGraphics myFrame = new FrameWithGraphics();
 		
-		myFrame.setVisible(true);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		myFrame.setVisible(true);	
 	}
-
 }
 
 
@@ -31,6 +29,8 @@ class FrameWithGraphics extends JFrame {
 		// Add PanelWithGraphics
 		PanelWithGraphics myPanel = new PanelWithGraphics();
 		add(myPanel);
+		
+		myPanel.setBackground(SystemColor.window);
 	}
 	
 }
@@ -53,30 +53,40 @@ class PanelWithGraphics extends JPanel {
 		// Draw rectangle
 		Graphics2D g2 = (Graphics2D) g;
 		
-		Rectangle2D rectangle = new Rectangle2D.Double(100, 100, 200.25, 150);
+		Rectangle2D rectangle = new Rectangle2D.Double(100, 100, 200, 150);
 		
+		g2.setPaint(Color.WHITE);
 		g2.draw(rectangle);
+		
+		g2.setPaint(Color.RED);
+		g2.fill(rectangle);
 		
 		// Draw ellipse
 		Ellipse2D ellipse = new Ellipse2D.Double();
 		
 		ellipse.setFrame(rectangle);
 		
-		g2.draw(ellipse);
+		Color myColor = new Color(125, 189, 200);
+		
+//		g2.setPaint(new Color(109, 172, 59).brighter());
+		
+		g2.setPaint(myColor);
+		
+		g2.fill(ellipse);
 		
 		// Draw line
-		g2.draw(new Line2D.Double(100, 100, 300, 250));
+//		g2.draw(new Line2D.Double(100, 100, 300, 250));
 		
 		// Draw circle
-		double centerX = rectangle.getCenterX();
-		double centerY = rectangle.getCenterY();
-		double radio = 150;
-		
-		Ellipse2D circle = new Ellipse2D.Double();
-		
-		circle.setFrameFromCenter(centerX, centerY, centerX + radio, centerY + radio);
-		
-		g2.draw(circle);
+//		double centerX = rectangle.getCenterX();
+//		double centerY = rectangle.getCenterY();
+//		double radio = 150;
+//		
+//		Ellipse2D circle = new Ellipse2D.Double();
+//		
+//		circle.setFrameFromCenter(centerX, centerY, centerX + radio, centerY + radio);
+//		
+//		g2.draw(circle);
 		
 	}
 }
