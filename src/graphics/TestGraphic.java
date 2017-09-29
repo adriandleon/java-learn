@@ -2,6 +2,7 @@ package graphics;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.geom.*;
 
 public class TestGraphic {
 
@@ -43,10 +44,39 @@ class PanelWithGraphics extends JPanel {
 		
 		super.paintComponent(g);
 		
-		g.drawRect(50, 50, 200, 200);
+//		g.drawRect(50, 50, 200, 200);
+//		
+//		g.drawLine(100, 100, 300, 200);		
+//		
+//		g.drawArc(50, 100, 100, 200, 120, 154);
 		
-		g.drawLine(100, 100, 300, 200);		
+		// Draw rectangle
+		Graphics2D g2 = (Graphics2D) g;
 		
-		g.drawArc(50, 100, 100, 200, 120, 154);
+		Rectangle2D rectangle = new Rectangle2D.Double(100, 100, 200.25, 150);
+		
+		g2.draw(rectangle);
+		
+		// Draw ellipse
+		Ellipse2D ellipse = new Ellipse2D.Double();
+		
+		ellipse.setFrame(rectangle);
+		
+		g2.draw(ellipse);
+		
+		// Draw line
+		g2.draw(new Line2D.Double(100, 100, 300, 250));
+		
+		// Draw circle
+		double centerX = rectangle.getCenterX();
+		double centerY = rectangle.getCenterY();
+		double radio = 150;
+		
+		Ellipse2D circle = new Ellipse2D.Double();
+		
+		circle.setFrameFromCenter(centerX, centerY, centerX + radio, centerY + radio);
+		
+		g2.draw(circle);
+		
 	}
 }
