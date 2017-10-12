@@ -15,7 +15,6 @@ public class TestImages {
 		myFrame.setVisible(true);
 		
 	}
-
 }
 
 
@@ -47,19 +46,36 @@ class PanelWithImage extends JPanel {
 	 */
 	private static final long serialVersionUID = -1595413163193505701L;
 	private Image image;
+	
+	public PanelWithImage() {
+		
+		try {
+			image = ImageIO.read(new File("src/graphics/plus5.png"));
+		}
+		catch (IOException e) {
+			
+			System.out.println("La imagen no se encuentra.");	
+		}
+	}
 
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
 		
-		try {
-			image = ImageIO.read(new File("src/graphics/cashbox.png"));
-		}
-		catch (IOException e) {
-			System.out.println("La imagen no se encuentra.");
-		}
+		int widhtImage = image.getWidth(this);
+		int heightImage = image.getHeight(this);
 		
-		g.drawImage(image, 5, 5, null);
+		g.drawImage(image, 0, 0, null);
+		
+		for (int i = 0; i < 300; i += 64) {
+			
+			for (int j = 0; j < 200; j += 64) {
+					
+				g.copyArea(0, 0, widhtImage, heightImage, i, j);
+				
+			}			
+		}
+	
 	}
 	
 }
