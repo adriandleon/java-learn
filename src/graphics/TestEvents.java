@@ -33,7 +33,7 @@ class ButtonsFrame extends JFrame {
 }
 
 
-class ButtonsPanel extends JPanel implements ActionListener {
+class ButtonsPanel extends JPanel {
 
 	/**
 	 * 
@@ -50,25 +50,25 @@ class ButtonsPanel extends JPanel implements ActionListener {
 		add(yellowButton);
 		add(redButton);
 		
-		blueButton.addActionListener(this);
-		yellowButton.addActionListener(this);
-		redButton.addActionListener(this);
+		blueButton.addActionListener(new BackgroundColor(Color.BLUE));
+		yellowButton.addActionListener(new BackgroundColor(Color.YELLOW));
+		redButton.addActionListener(new BackgroundColor(Color.RED));
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
+	
+	private class BackgroundColor implements ActionListener {
 		
-		Object buttonPressed = e.getSource();
+		private Color backgroundColor;
 		
-		if (buttonPressed == blueButton) {
-			setBackground(Color.BLUE);			
-		}
-		else if (buttonPressed == yellowButton) {
-			setBackground(Color.YELLOW);
-		}
-		else if (buttonPressed == redButton){
-			setBackground(Color.RED);
+		public BackgroundColor(Color c) {
+			
+			backgroundColor = c;
 		}
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			setBackground(backgroundColor);
+		}
 	}
 }
