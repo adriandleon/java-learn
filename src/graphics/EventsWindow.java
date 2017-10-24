@@ -40,40 +40,10 @@ class WindowFrame extends JFrame {
 }
 
 
-class MWindow implements WindowListener {
-
-	@Override
-	public void windowActivated(WindowEvent arg0) {
-		System.out.println("Window activated");
-	}
-
-	@Override
-	public void windowClosed(WindowEvent arg0) {
-		System.out.println("Window closed");
-	}
-
-	@Override
-	public void windowClosing(WindowEvent arg0) {
-		System.out.println("Closing window");
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent arg0) {
-		System.out.println("Window deactivated");
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent arg0) {
-		System.out.println("Window deconified");
-	}
+class MWindow extends WindowAdapter {
 
 	@Override
 	public void windowIconified(WindowEvent arg0) {
 		System.out.println("Window minimized");
 	}
-
-	@Override
-	public void windowOpened(WindowEvent arg0) {
-		System.out.println("Window opened");
-	}	
 }
