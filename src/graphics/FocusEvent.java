@@ -52,13 +52,17 @@ class FocusPanel extends JPanel {
     private class TextFieldFocus implements FocusListener {
 
         @Override
-        public void focusGained(java.awt.event.FocusEvent focusEvent) {
-            System.out.println("Focus gained");
-        }
+        public void focusGained(java.awt.event.FocusEvent focusEvent) {  }
 
         @Override
         public void focusLost(java.awt.event.FocusEvent focusEvent) {
-            System.out.println("Focus lost");
+            String email = box1.getText();
+
+            if (email.length() > 5 && email.contains("@") && email.contains(".")) {
+                System.out.println("Valid email");
+            } else {
+                System.out.println("Invalid email");
+            }
         }
     }
 }
