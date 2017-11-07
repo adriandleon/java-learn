@@ -1,6 +1,7 @@
 package graphics;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ActionsTest {
@@ -25,17 +26,34 @@ class ActionFrame extends JFrame {
 class ActionPanel extends JPanel {
 
     public ActionPanel() {
-        JButton yellowButton = new JButton("Yellow");
-        JButton blueButton = new JButton("Blue");
-        JButton redButton = new JButton("Red");
 
-        add(yellowButton);
-        add(blueButton);
-        add(redButton);
+        ActionColor yellowAction = new ActionColor(
+                "Yellow", new ImageIcon("src/graphics/yellow_icon.png"), Color.YELLOW);
+
+        ActionColor blueAction = new ActionColor(
+                "Blue", new ImageIcon("src/graphics/yellow_icon.png"), Color.BLUE);
+
+        ActionColor redAction = new ActionColor(
+                "Red", new ImageIcon("src/graphics/red_icon.png"), Color.RED);
+
+//        JButton yellowButton = new JButton("Yellow");
+//        JButton blueButton = new JButton("Blue");
+//        JButton redButton = new JButton("Red");
+//
+//        add(yellowButton);
+//        add(blueButton);
+//        add(redButton);
     }
 }
 
 class ActionColor extends AbstractAction {
+
+    public ActionColor(String name, Icon icon, Color background) {
+        putValue(Action.NAME, name);
+        putValue(Action.SMALL_ICON, icon);
+        putValue(Action.SHORT_DESCRIPTION, "Set panel to color " + name);
+        putValue("BackgroundColor", background);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
