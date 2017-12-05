@@ -1,8 +1,9 @@
 package graphics;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TestEvents {
 
@@ -12,7 +13,6 @@ public class TestEvents {
 		myFrame.setVisible(true);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }
 
 
@@ -52,7 +52,7 @@ class ButtonsPanel extends JPanel {
 		
 		blueButton.addActionListener(new BackgroundColor(Color.BLUE));
 		yellowButton.addActionListener(new BackgroundColor(Color.YELLOW));
-		redButton.addActionListener(new BackgroundColor(Color.RED));
+	    redButton.addActionListener(new BackgroundColor(Color.RED));
 	}
 	
 	

@@ -1,10 +1,7 @@
 package graphics;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import javax.swing.*;
+import java.awt.*;
 
 public class WorkingWithFonts {
 
@@ -59,7 +56,7 @@ class PanelWithFonts extends JPanel {
 		
 //		g2.setColor(Color.BLUE);
 		
-		g2.drawString("Adrian De León", 100, 100);
+		g2.drawString("Adrian De Leon", 100, 100);
 		
 		g2.setFont(new Font("Tahoma", Font.ITALIC, 20));
 		

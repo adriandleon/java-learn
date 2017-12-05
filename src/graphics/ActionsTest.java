@@ -25,6 +25,10 @@ class ActionFrame extends JFrame {
 
 class ActionPanel extends JPanel {
 
+    private static final String YELLOW_ACTION_KEY = "yellowBackground";
+    private static final String BLUE_ACTION_KEY = "blueBackground";
+    private static final String RED_ACTION_KEY = "redBackground";
+
     public ActionPanel() {
 
         ImageIcon img = new ImageIcon("src/graphics/yellow_icon.png");
@@ -51,6 +55,18 @@ class ActionPanel extends JPanel {
         add(new JButton(yellowAction));
         add(new JButton(blueAction));
         add(new JButton(redAction));
+
+        InputMap inputMap = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+
+        inputMap.put(KeyStroke.getKeyStroke("ctrl Y"), YELLOW_ACTION_KEY);
+        inputMap.put(KeyStroke.getKeyStroke("ctrl B"), BLUE_ACTION_KEY);
+        inputMap.put(KeyStroke.getKeyStroke("ctrl R"), RED_ACTION_KEY);
+
+        ActionMap actionMap = getActionMap();
+
+        actionMap.put(YELLOW_ACTION_KEY, yellowAction);
+        actionMap.put(BLUE_ACTION_KEY, blueAction);
+        actionMap.put(RED_ACTION_KEY, redAction);
     }
 
     // Inner class

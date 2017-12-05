@@ -10,13 +10,13 @@ public class AccesoAplicacion {
 		
 		while (clave.equals(pass) == false) {
 			
-			pass = JOptionPane.showInputDialog("Introudce la contraseña, por favor");
+			pass = JOptionPane.showInputDialog("Enter your password, please");
 			
 			if (clave.equals(pass) == false) {
-				System.out.println("Contraseña incorrecta");
+				System.out.println("Incorrect password");
 			} 
 			else {
-				System.out.println("Acceso permitido");
+				System.out.println("Allowed access");
 			}
 		}
 	}

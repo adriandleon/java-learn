@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class AdivinaNumero {
 
@@ -14,21 +14,21 @@ public class AdivinaNumero {
 		do {
 			intentos++;
 			
-			System.out.println("Introudce un número, por favor");
+			System.out.println("Enter a number, please");
 			numero = entrada.nextInt();
 			
 			if (aleatorio < numero) {
-				System.out.println("Más bajo");
+				System.out.println("Lower");
 			}
 			else if (aleatorio > numero) {
-				System.out.println("Más alto");
+				System.out.println("Higher");
 			}
 		} while (numero != aleatorio);
 		
 		entrada.close();
 		
-		System.out.println("Correcto: " + aleatorio + " = " + numero);
-		System.out.println("Intentos " + intentos);
+		System.out.println("Correct: " + aleatorio + " = " + numero);
+		System.out.println("Attempt " + intentos);
 		
 	}
 
