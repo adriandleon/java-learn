@@ -19,10 +19,10 @@ class FrameLayout extends JFrame {
         setTitle("Test Actions");
         setBounds(600, 350, 600, 300);
         PanelLayout myPanel = new PanelLayout();
+        PanelLayout2 panel2 = new PanelLayout2();
 
-//        FlowLayout flow = new FlowLayout(FlowLayout.LEFT);
-        myPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        add(myPanel);
+        add(myPanel, BorderLayout.NORTH);
+        add(panel2, BorderLayout.SOUTH);
     }
 }
 
@@ -30,8 +30,21 @@ class PanelLayout extends JPanel {
 
     public PanelLayout() {
 
+//        setLayout(new FlowLayout(FlowLayout.CENTER, 30, 40));
+        setLayout(new FlowLayout(FlowLayout.LEFT));
         add(new JButton("Yellow"));
         add(new JButton("Red"));
-        add(new JButton("Blue"));
+
+    }
+}
+
+class PanelLayout2 extends JPanel {
+
+    public PanelLayout2() {
+
+        setLayout(new BorderLayout());
+        add(new JButton("Blue"), BorderLayout.WEST);
+        add(new JButton("Green"), BorderLayout.EAST);
+        add(new JButton("Black"), BorderLayout.CENTER);
     }
 }
