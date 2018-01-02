@@ -2,6 +2,8 @@ package graphics;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Calculator {
 
@@ -26,46 +28,65 @@ class CalculatorFrame extends JFrame {
 class CalculatorPanel extends JPanel {
 
     private JPanel keypadPanel;
+    private JButton display;
 
     CalculatorPanel() {
 
         setLayout(new BorderLayout());
-        JButton display = new JButton("0");
+        display = new JButton("0");
         display.setEnabled(false);
         add(display, BorderLayout.NORTH);
 
         keypadPanel = new JPanel();
         keypadPanel.setLayout(new GridLayout(4, 4));
 
+        ActionListener insertNumber = new InsertNumber();
+
         // Row 1
-        addButton("7");
-        addButton("8");
-        addButton("9");
-        addButton("/");
+        addButton("7", insertNumber);
+        addButton("8", insertNumber);
+        addButton("9", insertNumber);
+        addButton("/", null);
 
         // Row 2
-        addButton("4");
-        addButton("5");
-        addButton("6");
-        addButton("x");
+        addButton("4", insertNumber);
+        addButton("5", insertNumber);
+        addButton("6", insertNumber);
+        addButton("x", null);
 
         // Row 3
-        addButton("1");
-        addButton("2");
-        addButton("3");
-        addButton("-");
+        addButton("1", insertNumber);
+        addButton("2", insertNumber);
+        addButton("3", insertNumber);
+        addButton("-", null);
 
         // Row 4
-        addButton("0");
-        addButton("AC");
-        addButton("=");
-        addButton("+");
+        addButton("0", insertNumber);
+        addButton("AC", null);
+        addButton("=", null);
+        addButton("+", null);
 
         add(keypadPanel, BorderLayout.CENTER);
     }
 
-    private void addButton(String label) {
+    private void addButton(String label, ActionListener listener) {
         JButton button = new JButton(label);
+        button.addActionListener(listener);
         keypadPanel.add(button);
+    }
+
+    private class InsertNumber implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            String input = e.getActionCommand();
+
+            if (display.getText() == "0") {
+                display.setText(input);
+            } else {
+                display.setText(display.getText() + input);
+            }
+        }
     }
 }
