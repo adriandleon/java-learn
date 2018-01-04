@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class UsoTallas {
 	
@@ -10,7 +10,7 @@ public class UsoTallas {
 		
 		private String abreviatura;
 		
-		private Talla(String abreviatura) {
+		Talla(String abreviatura) {
 			this.abreviatura = abreviatura;
 		}
 		
