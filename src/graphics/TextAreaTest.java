@@ -18,7 +18,7 @@ public class TextAreaTest {
 
 class AreaTestFrame extends JFrame {
 
-    private final String WRAPTEXT_LABEL = "Set Wrap Text";
+    private final String WRAP_TEXT_LABEL = "Set Wrap Text";
     private final String TEXT_FOR_INSERT = "A collective list of public JSON APIs for use in web development. ";
     private JPanel buttonsPanel;
     private JButton insertButton;
@@ -40,14 +40,14 @@ class AreaTestFrame extends JFrame {
         });
         buttonsPanel.add(insertButton);
 
-        wrapTextButton = new JButton(WRAPTEXT_LABEL);
+        wrapTextButton = new JButton(WRAP_TEXT_LABEL);
         wrapTextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 boolean wrapedText = !textArea.getLineWrap();
                 textArea.setLineWrap(wrapedText);
 
-                wrapTextButton.setText(wrapedText ? "Remove Line Wrap" : WRAPTEXT_LABEL);
+                wrapTextButton.setText(wrapedText ? "Remove Line Wrap" : WRAP_TEXT_LABEL);
             }
         });
         buttonsPanel.add(wrapTextButton);
