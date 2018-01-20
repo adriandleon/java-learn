@@ -15,7 +15,6 @@ public class TextAreaTest {
     }
 }
 
-
 class AreaTestFrame extends JFrame {
 
     private final String WRAP_TEXT_LABEL = "Set Wrap Text";
