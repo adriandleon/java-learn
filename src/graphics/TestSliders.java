@@ -1,6 +1,8 @@
 package graphics;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class TestSliders {
@@ -23,14 +25,33 @@ class FrameSliders extends JFrame {
 
 class PanelSliders extends JPanel {
 
+    private JLabel label;
+    private JSlider slider;
+
     PanelSliders() {
-        JSlider slider = new JSlider(0, 150, 50);
-        slider.setMajorTickSpacing(50);
-        slider.setMinorTickSpacing(25);
+        setLayout(new BorderLayout());
+        label = new JLabel("Learning Java Programing!");
+        add(label, BorderLayout.CENTER);
+
+        slider = new JSlider(8, 40, 12);
+        slider.setMajorTickSpacing(4);
+        slider.setMinorTickSpacing(2);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
-        slider.setFont(new Font("Serif", Font.ITALIC, 12));
         slider.setSnapToTicks(true);
-        add(slider);
+        slider.setFont(new Font("Serif", Font.ITALIC, 12));
+        slider.addChangeListener(new SliderEvent());
+
+        JPanel panelSlider = new JPanel();
+        panelSlider.add(slider);
+        add(panelSlider, BorderLayout.NORTH);
+    }
+
+    private class SliderEvent implements ChangeListener {
+
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            label.setFont(new Font("Serif", Font.PLAIN, slider.getValue()));
+        }
     }
 }
