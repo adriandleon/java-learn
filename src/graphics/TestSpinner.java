@@ -28,11 +28,17 @@ class SpinnerPanel extends JPanel {
 
     SpinnerPanel() {
 
-        // Get fonts installed on the system
-//        String[] months = GraphicsEnvironment.getLocalGraphicsEnvironment()
-//                .getAvailableFontFamilyNames();
+        JSpinner control = new JSpinner(new SpinnerNumberModel(5, 0, 10, 1) {
+            @Override
+            public Object getNextValue() {
+                return super.getPreviousValue();
+            }
 
-        JSpinner control = new JSpinner(new SpinnerNumberModel(5, 0, 10, 1));
+            @Override
+            public Object getPreviousValue() {
+                return super.getNextValue();
+            }
+        });
 
         Dimension dimension = new Dimension(150, 26);
         control.setPreferredSize(dimension);
