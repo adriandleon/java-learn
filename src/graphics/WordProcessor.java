@@ -2,6 +2,8 @@ package graphics;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WordProcessor {
 
@@ -23,6 +25,8 @@ class MenuProcessor extends JFrame {
 
 class PanelProcessor extends JPanel {
 
+    private JTextPane textPane;
+
     PanelProcessor() {
         setLayout(new BorderLayout());
 
@@ -38,6 +42,24 @@ class PanelProcessor extends JPanel {
         JMenuItem monoMenuItem = new JMenuItem("FreeMono");
         JMenuItem sansMenuItem = new JMenuItem("FreeSans");
         JMenuItem serifMenuItem = new JMenuItem("FreeSerif");
+        monoMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textPane.setFont(new Font("Courier", Font.PLAIN, 12));
+            }
+        });
+        sansMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textPane.setFont(new Font("Arial", Font.PLAIN, 12));
+            }
+        });
+        serifMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textPane.setFont(new Font("Verdana", Font.PLAIN, 12));
+            }
+        });
         fontMenu.add(monoMenuItem);
         fontMenu.add(sansMenuItem);
         fontMenu.add(serifMenuItem);
@@ -64,5 +86,8 @@ class PanelProcessor extends JPanel {
 
         menuPanel.add(menuBar);
         add(menuPanel, BorderLayout.NORTH);
+
+        textPane = new JTextPane();
+        add(textPane, BorderLayout.CENTER);
     }
 }
