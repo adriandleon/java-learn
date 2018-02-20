@@ -2,8 +2,6 @@ package graphics;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class WordProcessor {
 
@@ -25,7 +23,15 @@ class MenuProcessor extends JFrame {
 
 class PanelProcessor extends JPanel {
 
-    private JTextPane textPane;
+    private static final String LABEL_FONT = "Font";
+    private static final String LABEL_STYLE = "Style";
+    private static final String LABEL_SIZE = "Size";
+
+    private JTextPane mTextPane;
+    private JMenu mFontMenu;
+    private JMenu mStyleMenu;
+    private JMenu mSizeMenu;
+    private Font mFont;
 
     PanelProcessor() {
         setLayout(new BorderLayout());
@@ -34,60 +40,49 @@ class PanelProcessor extends JPanel {
         JMenuBar menuBar = new JMenuBar();
 
         // Main Menu ************************************************************************************************ //
-        JMenu fontMenu = new JMenu("Font");
-        JMenu styleMenu = new JMenu("Style");
-        JMenu sizeMenu = new JMenu("Size");
+        mFontMenu = new JMenu(LABEL_FONT);
+        mStyleMenu = new JMenu(LABEL_STYLE);
+        mSizeMenu = new JMenu(LABEL_SIZE);
 
-        // Font Menu ************************************************************************************************ //
-        JMenuItem monoMenuItem = new JMenuItem("FreeMono");
-        JMenuItem sansMenuItem = new JMenuItem("FreeSans");
-        JMenuItem serifMenuItem = new JMenuItem("FreeSerif");
-        monoMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                textPane.setFont(new Font("Courier", Font.PLAIN, 12));
-            }
-        });
-        sansMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                textPane.setFont(new Font("Arial", Font.PLAIN, 12));
-            }
-        });
-        serifMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                textPane.setFont(new Font("Verdana", Font.PLAIN, 12));
-            }
-        });
-        fontMenu.add(monoMenuItem);
-        fontMenu.add(sansMenuItem);
-        fontMenu.add(serifMenuItem);
+        // Font Sub Menu ******************************************************************************************** //
+        setupMenu("Courier", LABEL_FONT, "Courier", Font.PLAIN, 12);
+        setupMenu("Verdana", LABEL_FONT, "Verdana", Font.PLAIN, 12);
+        setupMenu("Serif", LABEL_FONT, "Serif", Font.PLAIN, 12);
 
-        // Style Menu *********************************************************************************************** //
-        JMenuItem boldItemMenu = new JMenuItem("Bold");
-        JMenuItem cursiveItemMenu = new JMenuItem("Cursive");
-        styleMenu.add(boldItemMenu);
-        styleMenu.add(cursiveItemMenu);
+        // Style Sub Menu ******************************************************************************************* //
+        setupMenu("Bold", LABEL_STYLE, "", Font.BOLD, 12);
+        setupMenu("Cursive", LABEL_STYLE, "", Font.ITALIC, 12);
 
-        // Size Menu ************************************************************************************************ //
-        JMenuItem size12ItemMenu = new JMenuItem("12");
-        JMenuItem size16ItemMenu = new JMenuItem("16");
-        JMenuItem size20ItemMenu = new JMenuItem("20");
-        JMenuItem size24ItemMenu = new JMenuItem("24");
-        sizeMenu.add(size12ItemMenu);
-        sizeMenu.add(size16ItemMenu);
-        sizeMenu.add(size20ItemMenu);
-        sizeMenu.add(size24ItemMenu);
+        // Size Sub Menu ******************************************************************************************** //
+        setupMenu("12", LABEL_SIZE, "", Font.PLAIN, 12);
+        setupMenu("16", LABEL_SIZE, "", Font.PLAIN, 16);
+        setupMenu("20", LABEL_SIZE, "", Font.PLAIN, 20);
+        setupMenu("24", LABEL_SIZE, "", Font.PLAIN, 24);
 
-        menuBar.add(fontMenu);
-        menuBar.add(styleMenu);
-        menuBar.add(sizeMenu);
+        menuBar.add(mFontMenu);
+        menuBar.add(mStyleMenu);
+        menuBar.add(mSizeMenu);
 
         menuPanel.add(menuBar);
         add(menuPanel, BorderLayout.NORTH);
 
-        textPane = new JTextPane();
-        add(textPane, BorderLayout.CENTER);
+        mTextPane = new JTextPane();
+        add(mTextPane, BorderLayout.CENTER);
+    }
+
+    private void setupMenu(String label, String menu, String fontType, int style, int size) {
+        JMenuItem menuItem = new JMenuItem(label);
+
+        switch (menu) {
+            case LABEL_FONT:
+                mFontMenu.add(menuItem);
+                break;
+            case LABEL_STYLE:
+                mStyleMenu.add(menuItem);
+                break;
+            case LABEL_SIZE:
+                mSizeMenu.add(menuItem);
+                break;
+        }
     }
 }
