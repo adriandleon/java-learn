@@ -2,6 +2,8 @@ package graphics;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WordProcessor {
 
@@ -83,6 +85,29 @@ class PanelProcessor extends JPanel {
             case LABEL_SIZE:
                 mSizeMenu.add(menuItem);
                 break;
+        }
+
+        menuItem.addActionListener(new HandleEvents(label, fontType, style, size));
+    }
+
+    private class HandleEvents implements ActionListener {
+
+        private String option;
+        private String textType;
+        private int fontStyle;
+        private int fontSize;
+
+        HandleEvents(String option, String textType, int fontStyle, int fontSize) {
+            this.option = option;
+            this.textType = textType;
+            this.fontStyle = fontStyle;
+            this.fontSize = fontSize;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            mTextPane.setFont(new Font(textType, fontStyle, fontSize));
         }
     }
 }
