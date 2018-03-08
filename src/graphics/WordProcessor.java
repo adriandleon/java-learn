@@ -33,7 +33,6 @@ class PanelProcessor extends JPanel {
     private JMenu mFontMenu;
     private JMenu mStyleMenu;
     private JMenu mSizeMenu;
-    private Font mFont;
 
     PanelProcessor() {
         setLayout(new BorderLayout());
@@ -87,7 +86,7 @@ class PanelProcessor extends JPanel {
                 break;
         }
 
-        menuItem.addActionListener(new HandleEvents(label, fontType, style, size));
+        menuItem.addActionListener(new HandleEvents(menu, fontType, style, size));
     }
 
     private class HandleEvents implements ActionListener {
@@ -97,8 +96,8 @@ class PanelProcessor extends JPanel {
         private int fontStyle;
         private int fontSize;
 
-        HandleEvents(String option, String textType, int fontStyle, int fontSize) {
-            this.option = option;
+        HandleEvents(String menu, String textType, int fontStyle, int fontSize) {
+            this.option = menu;
             this.textType = textType;
             this.fontStyle = fontStyle;
             this.fontSize = fontSize;
@@ -107,7 +106,25 @@ class PanelProcessor extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            Font mFont = mTextPane.getFont();
+
+            switch (option) {
+                case LABEL_FONT:
+                    fontStyle = mFont.getStyle();
+                    fontSize = mFont.getSize();
+                    break;
+                case LABEL_STYLE:
+                    textType = mFont.getFontName();
+                    fontSize = mFont.getSize();
+                    break;
+                case LABEL_SIZE:
+                    textType = mFont.getFontName();
+                    fontStyle = mFont.getStyle();
+                    break;
+            }
+
             mTextPane.setFont(new Font(textType, fontStyle, fontSize));
+            System.out.println("Font type: " + textType + "\nFont style: " + fontStyle + "\nFont Size: " + fontSize);
         }
     }
 }
