@@ -1,9 +1,8 @@
 package graphics;
 
 import javax.swing.*;
+import javax.swing.text.StyledEditorKit;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class WordProcessor {
 
@@ -29,7 +28,6 @@ class PanelProcessor extends JPanel {
     private static final String LABEL_STYLE = "Style";
     private static final String LABEL_SIZE = "Size";
 
-    private JTextPane mTextPane;
     private JMenu mFontMenu;
     private JMenu mStyleMenu;
     private JMenu mSizeMenu;
@@ -67,7 +65,7 @@ class PanelProcessor extends JPanel {
         menuPanel.add(menuBar);
         add(menuPanel, BorderLayout.NORTH);
 
-        mTextPane = new JTextPane();
+        JTextPane mTextPane = new JTextPane();
         add(mTextPane, BorderLayout.CENTER);
     }
 
@@ -77,54 +75,17 @@ class PanelProcessor extends JPanel {
         switch (menu) {
             case LABEL_FONT:
                 mFontMenu.add(menuItem);
+                menuItem.addActionListener(new StyledEditorKit.FontFamilyAction("change_fontType", fontType));
                 break;
             case LABEL_STYLE:
                 mStyleMenu.add(menuItem);
+                menuItem.addActionListener(
+                        (style == Font.BOLD) ? new StyledEditorKit.BoldAction() : new StyledEditorKit.ItalicAction());
                 break;
             case LABEL_SIZE:
                 mSizeMenu.add(menuItem);
+                menuItem.addActionListener(new StyledEditorKit.FontSizeAction("change_size", size));
                 break;
-        }
-
-        menuItem.addActionListener(new HandleEvents(menu, fontType, style, size));
-    }
-
-    private class HandleEvents implements ActionListener {
-
-        private String option;
-        private String textType;
-        private int fontStyle;
-        private int fontSize;
-
-        HandleEvents(String menu, String textType, int fontStyle, int fontSize) {
-            this.option = menu;
-            this.textType = textType;
-            this.fontStyle = fontStyle;
-            this.fontSize = fontSize;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            Font mFont = mTextPane.getFont();
-
-            switch (option) {
-                case LABEL_FONT:
-                    fontStyle = mFont.getStyle();
-                    fontSize = mFont.getSize();
-                    break;
-                case LABEL_STYLE:
-                    textType = mFont.getFontName();
-                    fontSize = mFont.getSize();
-                    break;
-                case LABEL_SIZE:
-                    textType = mFont.getFontName();
-                    fontStyle = mFont.getStyle();
-                    break;
-            }
-
-            mTextPane.setFont(new Font(textType, fontStyle, fontSize));
-            System.out.println("Font type: " + textType + "\nFont style: " + fontStyle + "\nFont Size: " + fontSize);
         }
     }
 }
