@@ -1,9 +1,7 @@
 package graphics;
 
-import java.awt.Toolkit;
-import java.awt.Dimension;
-import java.awt.Image;
 import javax.swing.*;
+import java.awt.*;
 
 public class CenterFrame {
 
@@ -14,8 +12,6 @@ public class CenterFrame {
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		myFrame.setVisible(true);
-		
-		
 	}
 }
 
@@ -37,7 +33,7 @@ class CenteredFrame extends JFrame
 		
 		setTitle("Centered Frame");
 		
-		Image icon = myScreen.getImage("src/graphics/icono.png");
+		Image icon = myScreen.getImage("src/graphics/images/icon.png");
 		
 		setIconImage(icon);
 		

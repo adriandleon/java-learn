@@ -32,9 +32,9 @@ class MenuPanel extends JPanel {
         fileMenu.add(saveAsMenuItem);
 
         JMenu editMenu = new JMenu("Edit");
-        JMenuItem copyMenuItem = new JMenuItem("Copy");
-        JMenuItem cutMenuItem = new JMenuItem("Cut");
-        JMenuItem pasteMenuItem = new JMenuItem("Paste");
+        JMenuItem copyMenuItem = new JMenuItem("Copy", new ImageIcon("bin/graphics/images/copy.png"));
+        JMenuItem cutMenuItem = new JMenuItem("Cut", new ImageIcon("bin/graphics/images/cut.png"));
+        JMenuItem pasteMenuItem = new JMenuItem("Paste", new ImageIcon("bin/graphics/images/paste.png"));
         JMenu optionsMenu = new JMenu("Options");
         JMenuItem option1MenuItem = new JMenuItem("Option 1");
         JMenuItem option2MenuItem = new JMenuItem("Option 2");

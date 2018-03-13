@@ -15,7 +15,7 @@ public class ActionsTest {
 
 class ActionFrame extends JFrame {
 
-    public ActionFrame() {
+    ActionFrame() {
         setTitle("Actions Test");
         setBounds(600, 350, 600, 300);
         ActionPanel myPanel = new ActionPanel();
@@ -29,23 +29,23 @@ class ActionPanel extends JPanel {
     private static final String BLUE_ACTION_KEY = "blueBackground";
     private static final String RED_ACTION_KEY = "redBackground";
 
-    public ActionPanel() {
+    ActionPanel() {
 
-        ImageIcon img = new ImageIcon("src/graphics/yellow_icon.png");
+        ImageIcon img = new ImageIcon("src/graphics/images/yellow_icon.png");
         Image imgResized = img.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
         Icon iconResized = new ImageIcon(imgResized);
 
         ActionColor yellowAction = new ActionColor(
                 "Yellow", iconResized, Color.YELLOW);
 
-        img = new ImageIcon("src/graphics/blue_icon.png");
+        img = new ImageIcon("src/graphics/images/blue_icon.png");
         imgResized = img.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
         iconResized = new ImageIcon(imgResized);
 
         ActionColor blueAction = new ActionColor(
                 "Blue", iconResized, Color.BLUE);
 
-        img = new ImageIcon("src/graphics/red_icon.png");
+        img = new ImageIcon("src/graphics/images/red_icon.png");
         imgResized = img.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH);
         iconResized = new ImageIcon(imgResized);
 
@@ -74,7 +74,7 @@ class ActionPanel extends JPanel {
 
         private static final String TAG_BACKGROUND = "BackgroundColor";
 
-        public ActionColor(String name, Icon icon, Color background) {
+        ActionColor(String name, Icon icon, Color background) {
             putValue(Action.NAME, name);
             putValue(Action.SMALL_ICON, icon);
             putValue(Action.SHORT_DESCRIPTION, "Set panel to color " + name);

@@ -1,9 +1,10 @@
 package graphics;
 
-import java.awt.*;
-import java.io.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.imageio.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class TestImages {
 
@@ -50,7 +51,7 @@ class PanelWithImage extends JPanel {
 	public PanelWithImage() {
 		
 		try {
-			image = ImageIO.read(new File("src/graphics/plus5.png"));
+			image = ImageIO.read(new File("src/graphics/images/plus5.png"));
 		}
 		catch (IOException e) {
 			
