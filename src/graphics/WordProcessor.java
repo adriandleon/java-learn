@@ -86,6 +86,18 @@ class PanelProcessor extends JPanel {
 
         JTextPane mTextPane = new JTextPane();
         add(mTextPane, BorderLayout.CENTER);
+
+        // Popup Menu
+
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem popupBold = new JMenuItem("Bold");
+        JMenuItem popupItalic = new JMenuItem("Italic");
+        popupBold.addActionListener(new StyledEditorKit.BoldAction());
+        popupItalic.addActionListener(new StyledEditorKit.ItalicAction());
+        popupMenu.add(popupBold);
+        popupMenu.add(popupItalic);
+
+        mTextPane.setComponentPopupMenu(popupMenu);
     }
 
     private void setupMenu(String label, String menu, String fontType) {
