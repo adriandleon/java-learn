@@ -29,7 +29,6 @@ class PanelProcessor extends JPanel {
     private static final String LABEL_SIZE = "Size";
 
     private JMenu mFontMenu;
-    private JMenu mStyleMenu;
     private JMenu mSizeMenu;
 
     PanelProcessor() {
@@ -40,23 +39,43 @@ class PanelProcessor extends JPanel {
 
         // Main Menu ************************************************************************************************ //
         mFontMenu = new JMenu(LABEL_FONT);
-        mStyleMenu = new JMenu(LABEL_STYLE);
+        JMenu mStyleMenu = new JMenu(LABEL_STYLE);
         mSizeMenu = new JMenu(LABEL_SIZE);
 
         // Font Sub Menu ******************************************************************************************** //
-        setupMenu("Courier", LABEL_FONT, "Courier", Font.PLAIN, 12, "");
-        setupMenu("Verdana", LABEL_FONT, "Verdana", Font.PLAIN, 12, "");
-        setupMenu("Serif", LABEL_FONT, "Serif", Font.PLAIN, 12, "");
+        setupMenu("Courier", LABEL_FONT, "Courier");
+        setupMenu("Verdana", LABEL_FONT, "Verdana");
+        setupMenu("Serif", LABEL_FONT, "Serif");
 
         // Style Sub Menu ******************************************************************************************* //
-        setupMenu("Bold", LABEL_STYLE, "", Font.BOLD, 12, "bin/graphics/images/bold.png");
-        setupMenu("Cursive", LABEL_STYLE, "", Font.ITALIC, 12, "bin/graphics/images/italic.png");
+        JCheckBoxMenuItem boldMenu = new JCheckBoxMenuItem("Bold", new ImageIcon("bin/graphics/images/bold.png"));
+        JCheckBoxMenuItem cursiveMenu = new JCheckBoxMenuItem("Cursive", new ImageIcon("bin/graphics/images/italic.png"));
+        boldMenu.addActionListener(new StyledEditorKit.BoldAction());
+        cursiveMenu.addActionListener(new StyledEditorKit.ItalicAction());
+        mStyleMenu.add(boldMenu);
+        mStyleMenu.add(cursiveMenu);
 
         // Size Sub Menu ******************************************************************************************** //
-        setupMenu("12", LABEL_SIZE, "", Font.PLAIN, 12, "");
-        setupMenu("16", LABEL_SIZE, "", Font.PLAIN, 16, "");
-        setupMenu("20", LABEL_SIZE, "", Font.PLAIN, 20, "");
-        setupMenu("24", LABEL_SIZE, "", Font.PLAIN, 24, "");
+        ButtonGroup fontSize = new ButtonGroup();
+        JRadioButtonMenuItem size12 = new JRadioButtonMenuItem("12");
+        JRadioButtonMenuItem size16 = new JRadioButtonMenuItem("16");
+        JRadioButtonMenuItem size20 = new JRadioButtonMenuItem("20");
+        JRadioButtonMenuItem size24 = new JRadioButtonMenuItem("24");
+
+        size12.addActionListener(new StyledEditorKit.FontSizeAction("change_fontType", 12));
+        size16.addActionListener(new StyledEditorKit.FontSizeAction("change_fontType", 16));
+        size20.addActionListener(new StyledEditorKit.FontSizeAction("change_fontType", 20));
+        size24.addActionListener(new StyledEditorKit.FontSizeAction("change_fontType", 24));
+
+        fontSize.add(size12);
+        fontSize.add(size16);
+        fontSize.add(size20);
+        fontSize.add(size24);
+
+        mSizeMenu.add(size12);
+        mSizeMenu.add(size16);
+        mSizeMenu.add(size20);
+        mSizeMenu.add(size24);
 
         menuBar.add(mFontMenu);
         menuBar.add(mStyleMenu);
@@ -69,23 +88,18 @@ class PanelProcessor extends JPanel {
         add(mTextPane, BorderLayout.CENTER);
     }
 
-    private void setupMenu(String label, String menu, String fontType, int style, int size, String pathIcon) {
+    private void setupMenu(String label, String menu, String fontType) {
 
-        JMenuItem menuItem = new JMenuItem(label, new ImageIcon(pathIcon));
+        JMenuItem menuItem = new JMenuItem(label);
 
         switch (menu) {
             case LABEL_FONT:
                 mFontMenu.add(menuItem);
                 menuItem.addActionListener(new StyledEditorKit.FontFamilyAction("change_fontType", fontType));
                 break;
-            case LABEL_STYLE:
-                mStyleMenu.add(menuItem);
-                menuItem.addActionListener(
-                        (style == Font.BOLD) ? new StyledEditorKit.BoldAction() : new StyledEditorKit.ItalicAction());
-                break;
             case LABEL_SIZE:
                 mSizeMenu.add(menuItem);
-                menuItem.addActionListener(new StyledEditorKit.FontSizeAction("change_size", size));
+                menuItem.addActionListener(new StyledEditorKit.FontSizeAction("change_size", 12));
                 break;
         }
     }
