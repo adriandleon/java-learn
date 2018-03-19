@@ -1,70 +1,62 @@
-import java.util.*;
 import javax.swing.*;
+import java.util.Scanner;
 
 public class Areas {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
-		Scanner entrada = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Elige una opción: \n1: Cuadrado\n2: Rectángulo" +
-				"\n3: Triángulo\n4: Círculo");
+		System.out.println("Select one option: \n1: Square\n2: Rectangle" +
+				"\n3: Triangle\n4: Circle");
 		
-		int figura = entrada.nextInt();
+		int figure = input.nextInt();
 		
-		entrada.close();
+		input.close();
 		
-		switch (figura) {
+		switch (figure) {
 		case 1:
 			
-			int lado = 0;
-			lado = Integer.parseInt(JOptionPane.showInputDialog(
-					"Introduce el lado"));
-			
-			System.out.println("El área del cuadrado es " + Math.pow(lado, 2));
-			
+			int side = Integer.parseInt(JOptionPane.showInputDialog(
+					"Enter the side"));
+
+			System.out.println("The area of the square is " + Math.pow(side, 2));
 			break;
 		
 		case 2:
 			
 			int base = Integer.parseInt(JOptionPane.showInputDialog(
-					"Introduce la base"));
-			int altura = Integer.parseInt(JOptionPane.showInputDialog(
-					"Introduce la altura"));
+					"Enter the base"));
+			int height = Integer.parseInt(JOptionPane.showInputDialog(
+					"Enter the height"));
 			
-			System.out.println("El área del rectángulo es " + (base * altura));
-			
+			System.out.println("The area of the rectangle is " + (base * height));
 			break;
 			
 		case 3:
 			
 			base = Integer.parseInt(JOptionPane.showInputDialog(
-					"Introduce la base"));
-			altura = Integer.parseInt(JOptionPane.showInputDialog(
-					"Introduce la altura"));
+					"Enter the base"));
+			height = Integer.parseInt(JOptionPane.showInputDialog(
+					"Enter the height"));
 			
-			System.out.println("El área del triángulo es " + (base * altura) / 2);
-			
+			System.out.println("The area of the triangle is " + (base * height) / 2);
 			break;
 			
 		case 4:
 			
 			int radio = Integer.parseInt(JOptionPane.showInputDialog(
-					"Introduce el radio"));
+					"Enter the radio"));
 			
-			System.out.print("El área del círculo es ");
+			System.out.print("The area of the circle is ");
 			
 			System.out.printf("%1.2f", Math.PI * Math.pow(radio, 2));
-			
 			break;
 			
 		default:
 			
-			System.out.println("La opción no es correcta");
-			
+			System.out.println("The option is not correct");
 			break;
 		}
 	}
-
 }

@@ -3,6 +3,8 @@ package graphics;
 import javax.swing.*;
 import javax.swing.text.StyledEditorKit;
 import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 public class WordProcessor {
 
@@ -49,11 +51,15 @@ class PanelProcessor extends JPanel {
 
         // Style Sub Menu ******************************************************************************************* //
         JCheckBoxMenuItem boldMenu = new JCheckBoxMenuItem("Bold", new ImageIcon("bin/graphics/images/bold.png"));
-        JCheckBoxMenuItem cursiveMenu = new JCheckBoxMenuItem("Cursive", new ImageIcon("bin/graphics/images/italic.png"));
+        JCheckBoxMenuItem italicMenu = new JCheckBoxMenuItem("Cursive", new ImageIcon("bin/graphics/images/italic.png"));
+
+        boldMenu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_DOWN_MASK));
+        italicMenu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_DOWN_MASK));
+
         boldMenu.addActionListener(new StyledEditorKit.BoldAction());
-        cursiveMenu.addActionListener(new StyledEditorKit.ItalicAction());
+        italicMenu.addActionListener(new StyledEditorKit.ItalicAction());
         mStyleMenu.add(boldMenu);
-        mStyleMenu.add(cursiveMenu);
+        mStyleMenu.add(italicMenu);
 
         // Size Sub Menu ******************************************************************************************** //
         ButtonGroup fontSize = new ButtonGroup();
