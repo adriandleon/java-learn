@@ -1,8 +1,7 @@
 
-public class ArraysBidimensionales {
+public class TwoDimensionalArrays {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		int[][] matrix = {
 				{10, 15, 18, 19, 21},
@@ -11,12 +10,11 @@ public class ArraysBidimensionales {
 				{85, 2, 7, 40, 27},
 		};
 		
-		for (int[] fila:matrix) {
-			for (int z:fila) {
+		for (int[] row : matrix) {
+			for (int z : row) {
 				System.out.print(z + " ");
 			}
 			System.out.println("");
 		}
-		
 	}
 }
