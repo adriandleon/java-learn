@@ -29,6 +29,7 @@ class PanelProcessor extends JPanel {
     private static final String LABEL_FONT = "Font";
     private static final String LABEL_STYLE = "Style";
     private static final String LABEL_SIZE = "Size";
+    private static final String PATH_IMAGES = "src/graphics/images/";
 
     private JMenu mFontMenu;
     private JMenu mSizeMenu;
@@ -104,9 +105,24 @@ class PanelProcessor extends JPanel {
         popupMenu.add(popupItalic);
 
         mTextPane.setComponentPopupMenu(popupMenu);
+
+        // Toolbar
+        JToolBar toolBar = new JToolBar();
+        toolBar.setOrientation(JToolBar.VERTICAL);
+
+        JButton boldButton = new JButton(new ImageIcon(PATH_IMAGES + "bold.png"));
+        JButton italicButton = new JButton(new ImageIcon(PATH_IMAGES + "italic.png"));
+        JButton underlineButton = new JButton(new ImageIcon(PATH_IMAGES + "underline.png"));
+        boldButton.addActionListener(new StyledEditorKit.BoldAction());
+        italicButton.addActionListener(new StyledEditorKit.ItalicAction());
+        underlineButton.addActionListener(new StyledEditorKit.UnderlineAction());
+        toolBar.add(boldButton);
+        toolBar.add(italicButton);
+        toolBar.add(underlineButton);
+        add(toolBar, BorderLayout.WEST);
     }
 
-    private void setupMenu(String label, String menu, String fontType) {
+    private void setupMenu(String label, final String menu, String fontType) {
 
         JMenuItem menuItem = new JMenuItem(label);
 
