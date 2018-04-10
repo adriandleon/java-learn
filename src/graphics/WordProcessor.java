@@ -17,7 +17,7 @@ public class WordProcessor {
 class MenuProcessor extends JFrame {
 
     MenuProcessor() {
-        setBounds(500, 300, 550, 400);
+        setBounds(500, 260, 600, 440);
         PanelProcessor myPanel = new PanelProcessor();
         add(myPanel);
         setVisible(true);
@@ -113,12 +113,36 @@ class PanelProcessor extends JPanel {
         JButton boldButton = new JButton(new ImageIcon(PATH_IMAGES + "bold.png"));
         JButton italicButton = new JButton(new ImageIcon(PATH_IMAGES + "italic.png"));
         JButton underlineButton = new JButton(new ImageIcon(PATH_IMAGES + "underline.png"));
+        JButton blueButton = new JButton(new ImageIcon(PATH_IMAGES + "blue_icon.png"));
+        JButton yellowButton = new JButton(new ImageIcon(PATH_IMAGES + "yellow_icon.png"));
+        JButton redButton = new JButton(new ImageIcon(PATH_IMAGES + "red_icon.png"));
+        JButton leftButton = new JButton(new ImageIcon(PATH_IMAGES + "align_left.png"));
+        JButton rightButton = new JButton(new ImageIcon(PATH_IMAGES + "align_right.png"));
+        JButton centerButton = new JButton(new ImageIcon(PATH_IMAGES + "align_center.png"));
+        JButton justifyButton = new JButton(new ImageIcon(PATH_IMAGES + "align_justify.png"));
+
         boldButton.addActionListener(new StyledEditorKit.BoldAction());
         italicButton.addActionListener(new StyledEditorKit.ItalicAction());
         underlineButton.addActionListener(new StyledEditorKit.UnderlineAction());
+        blueButton.addActionListener(new StyledEditorKit.ForegroundAction("Blue", Color.BLUE));
+        yellowButton.addActionListener(new StyledEditorKit.ForegroundAction("Yellow", Color.YELLOW));
+        redButton.addActionListener(new StyledEditorKit.ForegroundAction("Red", Color.RED));
+        leftButton.addActionListener(new StyledEditorKit.AlignmentAction("Left", 0));
+        rightButton.addActionListener(new StyledEditorKit.AlignmentAction("Right", 2));
+        centerButton.addActionListener(new StyledEditorKit.AlignmentAction("Center", 1));
+        justifyButton.addActionListener(new StyledEditorKit.AlignmentAction("Justify", 3));
+
         toolBar.add(boldButton);
         toolBar.add(italicButton);
         toolBar.add(underlineButton);
+        toolBar.add(blueButton);
+        toolBar.add(yellowButton);
+        toolBar.add(redButton);
+        toolBar.add(leftButton);
+        toolBar.add(rightButton);
+        toolBar.add(centerButton);
+        toolBar.add(justifyButton);
+
         add(toolBar, BorderLayout.WEST);
     }
 
