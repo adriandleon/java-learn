@@ -31,6 +31,7 @@ class PanelProcessor extends JPanel {
     private static final String LABEL_SIZE = "Size";
     private static final String PATH_IMAGES = "src/graphics/images/";
 
+    private JToolBar mToolbar;
     private JMenu mFontMenu;
     private JMenu mSizeMenu;
 
@@ -107,43 +108,30 @@ class PanelProcessor extends JPanel {
         mTextPane.setComponentPopupMenu(popupMenu);
 
         // Toolbar
-        JToolBar toolBar = new JToolBar();
-        toolBar.setOrientation(JToolBar.VERTICAL);
 
-        JButton boldButton = new JButton(new ImageIcon(PATH_IMAGES + "bold.png"));
-        JButton italicButton = new JButton(new ImageIcon(PATH_IMAGES + "italic.png"));
-        JButton underlineButton = new JButton(new ImageIcon(PATH_IMAGES + "underline.png"));
-        JButton blueButton = new JButton(new ImageIcon(PATH_IMAGES + "blue_icon.png"));
-        JButton yellowButton = new JButton(new ImageIcon(PATH_IMAGES + "yellow_icon.png"));
-        JButton redButton = new JButton(new ImageIcon(PATH_IMAGES + "red_icon.png"));
-        JButton leftButton = new JButton(new ImageIcon(PATH_IMAGES + "align_left.png"));
-        JButton rightButton = new JButton(new ImageIcon(PATH_IMAGES + "align_right.png"));
-        JButton centerButton = new JButton(new ImageIcon(PATH_IMAGES + "align_center.png"));
-        JButton justifyButton = new JButton(new ImageIcon(PATH_IMAGES + "align_justify.png"));
+        mToolbar = new JToolBar();
+        mToolbar.setOrientation(JToolBar.VERTICAL);
 
-        boldButton.addActionListener(new StyledEditorKit.BoldAction());
-        italicButton.addActionListener(new StyledEditorKit.ItalicAction());
-        underlineButton.addActionListener(new StyledEditorKit.UnderlineAction());
-        blueButton.addActionListener(new StyledEditorKit.ForegroundAction("Blue", Color.BLUE));
-        yellowButton.addActionListener(new StyledEditorKit.ForegroundAction("Yellow", Color.YELLOW));
-        redButton.addActionListener(new StyledEditorKit.ForegroundAction("Red", Color.RED));
-        leftButton.addActionListener(new StyledEditorKit.AlignmentAction("Left", 0));
-        rightButton.addActionListener(new StyledEditorKit.AlignmentAction("Right", 2));
-        centerButton.addActionListener(new StyledEditorKit.AlignmentAction("Center", 1));
-        justifyButton.addActionListener(new StyledEditorKit.AlignmentAction("Justify", 3));
+        setToolbar(PATH_IMAGES + "bold.png").addActionListener(new StyledEditorKit.BoldAction());
+        setToolbar(PATH_IMAGES + "italic.png").addActionListener(new StyledEditorKit.ItalicAction());
+        setToolbar(PATH_IMAGES + "underline.png").addActionListener(new StyledEditorKit.UnderlineAction());
+        mToolbar.addSeparator();
+        setToolbar(PATH_IMAGES + "blue_icon.png").addActionListener(new StyledEditorKit.ForegroundAction("Blue", Color.BLUE));
+        setToolbar(PATH_IMAGES + "yellow_icon.png").addActionListener(new StyledEditorKit.ForegroundAction("Yellow", Color.YELLOW));
+        setToolbar(PATH_IMAGES + "red_icon.png").addActionListener(new StyledEditorKit.ForegroundAction("Red", Color.RED));
+        mToolbar.addSeparator();
+        setToolbar(PATH_IMAGES + "align_left.png").addActionListener(new StyledEditorKit.AlignmentAction("Left", 0));
+        setToolbar(PATH_IMAGES + "align_right.png").addActionListener(new StyledEditorKit.AlignmentAction("Right", 2));
+        setToolbar(PATH_IMAGES + "align_center.png").addActionListener(new StyledEditorKit.AlignmentAction("Center", 1));
+        setToolbar(PATH_IMAGES + "align_justify.png").addActionListener(new StyledEditorKit.AlignmentAction("Justify", 3));
 
-        toolBar.add(boldButton);
-        toolBar.add(italicButton);
-        toolBar.add(underlineButton);
-        toolBar.add(blueButton);
-        toolBar.add(yellowButton);
-        toolBar.add(redButton);
-        toolBar.add(leftButton);
-        toolBar.add(rightButton);
-        toolBar.add(centerButton);
-        toolBar.add(justifyButton);
+        add(mToolbar, BorderLayout.WEST);
+    }
 
-        add(toolBar, BorderLayout.WEST);
+    private JButton setToolbar(final String iconPath) {
+        JButton button = new JButton(new ImageIcon(iconPath));
+        mToolbar.add(button);
+        return button;
     }
 
     private void setupMenu(String label, final String menu, String fontType) {
