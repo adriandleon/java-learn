@@ -3,17 +3,15 @@ import javax.swing.*;
 public class Factorial {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
-		long resultado = 1L;
-		int numero = Integer.parseInt(JOptionPane.showInputDialog(
-				"Introduce un número"));
+		long result = 1L;
+		int number = Integer.parseInt(JOptionPane.showInputDialog(
+				"Enter a number"));
 		
-		for (int i=numero; i>0; i--) {
-			resultado = resultado * i;
+		for (int i = number; i > 0; i--) {
+			result = result * i;
 		}
 		
-		System.out.println("El factorial de " + numero + " es " + resultado);
+		System.out.println("The factorial of " + number + " is " + result);
 	}
-
 }

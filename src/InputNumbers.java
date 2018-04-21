@@ -15,5 +15,4 @@ public class InputNumbers {
 		System.out.print("The square root of " + number2 + " is ");
 		System.out.printf("%1.2f", Math.sqrt(number2));
 	}
-
 }
