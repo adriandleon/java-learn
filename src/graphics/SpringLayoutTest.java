@@ -38,9 +38,11 @@ class SpringPanel extends JPanel {
         add(button3);
 
         Spring spring = Spring.constant(0, 10, 100);
+        Spring solidSpring = Spring.constant(10);
+
         springLayout.putConstraint(SpringLayout.WEST, button1, spring, SpringLayout.WEST, this);
-        springLayout.putConstraint(SpringLayout.WEST, button2, spring, SpringLayout.EAST, button1);
-        springLayout.putConstraint(SpringLayout.WEST, button3, spring, SpringLayout.EAST, button2);
+        springLayout.putConstraint(SpringLayout.WEST, button2, solidSpring, SpringLayout.EAST, button1);
+        springLayout.putConstraint(SpringLayout.WEST, button3, solidSpring, SpringLayout.EAST, button2);
         springLayout.putConstraint(SpringLayout.EAST, this, spring, SpringLayout.EAST, button3);
     }
 }

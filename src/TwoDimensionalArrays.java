@@ -14,7 +14,7 @@ public class TwoDimensionalArrays {
 			for (int z : row) {
 				System.out.print(z + " ");
 			}
-			System.out.println("");
+			System.out.println(" ");
 		}
 	}
 }
