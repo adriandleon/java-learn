@@ -29,28 +29,23 @@ class FreePanel extends JPanel {
 
         JLabel firstNameLabel = new JLabel("First Name: ");
         JLabel lastNameLabel = new JLabel("Last Name: ");
+        JLabel phoneLabel = new JLabel("Phone: ");
         JTextField firstNameTextField = new JTextField();
         JTextField lastNameTextField = new JTextField();
+        JTextField phoneTextField = new JTextField();
         JButton sendButton = new JButton("Send");
-
-//        firstNameLabel.setBounds(20, 20, 80, 14);
-//        firstNameTextField.setBounds(100, 18, 130, 20);
-//        lastNameLabel.setBounds(20, 60, 80, 14);
-//        lastNameTextField.setBounds(100, 58, 130, 20);
-//        sendButton.setBounds(100, 94, 130, 34);
 
         add(firstNameLabel);
         add(firstNameTextField);
         add(lastNameLabel);
         add(lastNameTextField);
+        add(phoneLabel);
+        add(phoneTextField);
         add(sendButton);
     }
 }
 
 class InColumns implements LayoutManager {
-
-//    private int x = 20;
-//    private int y = 20;
 
     @Override
     public void addLayoutComponent(String name, Component comp) {
@@ -75,8 +70,9 @@ class InColumns implements LayoutManager {
     @Override
     public void layoutContainer(Container parent) {
 
-        int x = 20;
         int y = 20;
+        int width = parent.getWidth();
+        int x = width / 2;
 
         int counter = 0;
         int n = parent.getComponentCount();
@@ -84,11 +80,11 @@ class InColumns implements LayoutManager {
         for (int i = 0; i < n; i++) {
             counter++;
             Component component = parent.getComponent(i);
-            component.setBounds(x, y, 100, 20);
+            component.setBounds(x - 100, y, 100, 20);
 
             if (counter % 2 == 0) {
-                x = 20;
-                y += 40;
+                x = width / 2;
+                y += 36;
             } else {
                 x += 100;
             }

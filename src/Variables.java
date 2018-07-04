@@ -2,18 +2,17 @@
 public class Variables {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		byte edad = 35;
+
+		byte age = 35;
 		
-		System.out.println(edad);
+		System.out.println(age);
 		
-		edad = 75; // This is one line comment
+		age = 75; // This is one line comment
 		
 		/*
 		 * Print in the console the value of 
-		 * variable 'edad'
+		 * variable 'age'
 		 */
-		System.out.println(edad);
+		System.out.println(age);
 	}
-
 }
