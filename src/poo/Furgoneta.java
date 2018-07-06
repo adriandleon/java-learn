@@ -1,6 +1,6 @@
 package poo;
 
-public class Furgoneta extends Coche {
+public class Furgoneta extends Vehicle {
 	
 	private int capacidad_carga;
 	private int plazas_extra;
