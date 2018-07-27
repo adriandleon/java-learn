@@ -16,8 +16,8 @@ public class BoxDialogTypes {
 
 class BoxDialogFrame extends JFrame {
 
-    public BoxDialogFrame() {
-        setBounds(500, 300, 400, 250);
+    BoxDialogFrame() {
+        setBounds(500, 300, 600, 250);
         add(new BoxDialogPanel());
     }
 }
@@ -29,7 +29,7 @@ class BoxDialogPanel extends JPanel {
     private JButton button3;
     private JButton button4;
 
-    public BoxDialogPanel() {
+    BoxDialogPanel() {
 
         button1 = new JButton("Button 1");
         button2 = new JButton("Button 2");
@@ -56,21 +56,22 @@ class BoxDialogPanel extends JPanel {
                 // Pressed button 1
 //                JOptionPane.showMessageDialog(BoxDialogPanel.this, "You have pressed button 1");
                 JOptionPane.showMessageDialog(BoxDialogPanel.this,
-                        "Test message", "Warning", JOptionPane.WARNING_MESSAGE);
+                        "Test message", "Message Dialog", JOptionPane.WARNING_MESSAGE);
 
             } else if (e.getSource() == button2) {
                 // Pressed button 2
                 JOptionPane.showInputDialog(BoxDialogPanel.this,
-                        "Enter your name", "Enter info", JOptionPane.PLAIN_MESSAGE);
+                        "Enter your name", "Input Dialog", JOptionPane.PLAIN_MESSAGE);
 
             } else if (e.getSource() == button3) {
                 // Pressed button 3
-                System.out.println("You have pressed button 3");
+                JOptionPane.showConfirmDialog(BoxDialogPanel.this, "Confirm Dialog",
+                        "Confirm", JOptionPane.YES_NO_OPTION);
 
             } else if (e.getSource() == button4) {
                 // Pressed button 4
-                System.out.println("You have pressed button 4");
-
+                JOptionPane.showOptionDialog(BoxDialogPanel.this, "Choose", "Option Dialog",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
             }
         }
     }

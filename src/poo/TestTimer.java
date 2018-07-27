@@ -1,10 +1,9 @@
 package poo;
 
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
-
-import java.awt.Toolkit;
-import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 
 public class TestTimer {
@@ -15,13 +14,11 @@ public class TestTimer {
 		Timer myTimer = new Timer(5000, listener);
 		myTimer.start();
 		
-		JOptionPane.showMessageDialog(null, "Pulsa aceptar para detener");
+		JOptionPane.showMessageDialog(null, "Press accept to stop");
 		
 		myTimer.stop();
 		System.exit(0);
-		
 	}
-
 }
 
 
@@ -29,7 +26,7 @@ class GetTime implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		Date now = new Date();
-		System.out.println("Te pongo la hora cada 5 seg: " + now);
+		System.out.println("Print time every 5 secs: " + now);
 		
 		Toolkit.getDefaultToolkit().beep();
 	}
