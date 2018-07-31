@@ -62,7 +62,7 @@ class WorkerInner extends Person {
     }
 
     // getter startDate
-    Date getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 

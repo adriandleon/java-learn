@@ -47,14 +47,14 @@ public class EmployeeTest {
 		
 		for (Empleado e: myEmployees) {
 			System.out.println("Nombre: " + e.getName() + " Sueldo: "
-					+ e.getSalary()	+ " Fecha de Alta: " + e.getStartDate());
+					+ e.getSalary());
 		}
 
 	}
 
 }
 
-class Empleado implements Comparable, WorkerInner {
+class Empleado implements Comparable, Chief {
 	
 	// Metodo Constructor
 	public Empleado(String nom, double sue, int agno, int mes, int dia) {
@@ -101,7 +101,7 @@ class Empleado implements Comparable, WorkerInner {
 	}
 	
 	public double setBonus(double gratificacion) {
-		return WorkerInner.baseBonus + gratificacion;
+		return baseBonus + gratificacion;
 	}
 	
 	// Atributos/Propiedades
@@ -109,6 +109,10 @@ class Empleado implements Comparable, WorkerInner {
 	private double salary;
 	private Date altaContrato;
 
+	@Override
+	public String makeDecision(String decision) {
+		return null;
+	}
 }
 
 
@@ -134,6 +138,6 @@ class Jefatura extends Empleado implements Chief {
 	
 	public double setBonus(double bonus) {
 		double base = 2000;
-		return WorkerInner.baseBonus + bonus + base;
+		return baseBonus + bonus + base;
 	}
 }
