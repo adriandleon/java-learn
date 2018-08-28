@@ -2,6 +2,8 @@ package exercises;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DialogsFrame extends JFrame {
 
@@ -55,9 +57,19 @@ public class DialogsFrame extends JFrame {
         // Bottom panel
         JPanel bottomPanel = new JPanel();
         JButton showButton = new JButton("Show");
+        showButton.addActionListener(new ShowAction());
         bottomPanel.add(showButton);
 
         add(gridPanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    private class ShowAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            System.out.println(typePanel.getSelection());
+        }
     }
 }
