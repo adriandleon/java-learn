@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class DialogsFrame extends JFrame {
 
@@ -13,6 +14,11 @@ public class DialogsFrame extends JFrame {
     private DialogsPanel optionTypePanel;
     private DialogsPanel optionPanel;
     private DialogsPanel inputPanel;
+
+    private String stringMessage = "A String message";
+    private Icon iconMessage = new ImageIcon("src/graphics/images/icon.png");
+    private Date dateMessage = new Date();
+    private Component componentMessage = new JPanel();
 
     public DialogsFrame() {
         setTitle("Dialogs Test");
@@ -70,6 +76,21 @@ public class DialogsFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
             System.out.println(typePanel.getSelection());
+
+            switch (typePanel.getSelection()) {
+                case "Message":
+                    JOptionPane.showMessageDialog(DialogsFrame.this, "Message", "Title", 0);
+                    break;
+                case "Confirm":
+                    JOptionPane.showConfirmDialog(DialogsFrame.this, "Message", "Title", 0, 0);
+                    break;
+                case "Option":
+                    JOptionPane.showOptionDialog(DialogsFrame.this, "Message", "Title", 0, 0, null, null, null);
+                    break;
+                case "Input":
+                    JOptionPane.showInputDialog(DialogsFrame.this, "Message", "Title", 0);
+                    break;
+            }
         }
     }
 }
