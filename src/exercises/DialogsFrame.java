@@ -4,9 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Rectangle2D;
 import java.util.Date;
 
 public class DialogsFrame extends JFrame {
+
+    private static final String LABEL_MESSAGE = "String";
+    private static final String LABEL_ICON = "Icon";
+    private static final String LABEL_COMPONENT  = "Component";
+    private static final String LABEL_OTHERS  = "Others";
+    private static final String LABEL_OBJECT  = "Object";
 
     private DialogsPanel typePanel;
     private DialogsPanel messageTypePanel;
@@ -18,7 +25,7 @@ public class DialogsFrame extends JFrame {
     private String stringMessage = "A String message";
     private Icon iconMessage = new ImageIcon("src/graphics/images/icon.png");
     private Date dateMessage = new Date();
-    private Component componentMessage = new JPanel();
+    private Component componentMessage = new ComponentPanel();
 
     public DialogsFrame() {
         setTitle("Dialogs Test");
@@ -36,7 +43,7 @@ public class DialogsFrame extends JFrame {
         });
 
         messagePanel = new DialogsPanel("Message", new String[]{
-                "String", "Icon", "Component", "Others", "Object"
+                LABEL_MESSAGE, LABEL_ICON, LABEL_COMPONENT, LABEL_OTHERS, LABEL_OBJECT
         });
 
         optionTypePanel = new DialogsPanel("Options type", new String[]{
@@ -70,6 +77,26 @@ public class DialogsFrame extends JFrame {
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    // Show Message
+    public Object getMessage() {
+        String message = messagePanel.getSelection();
+
+        switch (message) {
+            case LABEL_MESSAGE:
+                return stringMessage;
+            case LABEL_ICON:
+                return iconMessage;
+            case LABEL_COMPONENT:
+                return componentMessage;
+            case LABEL_OTHERS:
+                return dateMessage;
+            case LABEL_OBJECT:
+                return new Object[] { stringMessage, iconMessage, componentMessage, dateMessage };
+            default:
+                return null;
+        }
+    }
+
     private class ShowAction implements ActionListener {
 
         @Override
@@ -79,18 +106,35 @@ public class DialogsFrame extends JFrame {
 
             switch (typePanel.getSelection()) {
                 case "Message":
-                    JOptionPane.showMessageDialog(DialogsFrame.this, "Message", "Title", 0);
+                    JOptionPane.showMessageDialog(DialogsFrame.this, getMessage(),
+                            "Title", JOptionPane.ERROR_MESSAGE);
                     break;
                 case "Confirm":
-                    JOptionPane.showConfirmDialog(DialogsFrame.this, "Message", "Title", 0, 0);
+                    JOptionPane.showConfirmDialog(DialogsFrame.this, getMessage(),
+                            "Title", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
                     break;
                 case "Option":
-                    JOptionPane.showOptionDialog(DialogsFrame.this, "Message", "Title", 0, 0, null, null, null);
+                    JOptionPane.showOptionDialog(DialogsFrame.this, getMessage(),
+                            "Title", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
                     break;
                 case "Input":
-                    JOptionPane.showInputDialog(DialogsFrame.this, "Message", "Title", 0);
+                    JOptionPane.showInputDialog(DialogsFrame.this, getMessage(),
+                            "Title", JOptionPane.ERROR_MESSAGE);
                     break;
             }
+        }
+    }
+
+    private class ComponentPanel extends JPanel {
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+
+            Graphics2D g2 = (Graphics2D) g;
+            Rectangle2D rectangle2D = new Rectangle2D.Double(0, 0, getWidth(), getHeight());
+            g2.setPaint(Color.YELLOW);
+            g2.fill(rectangle2D);
         }
     }
 }
