@@ -14,6 +14,11 @@ public class DialogsFrame extends JFrame {
     private static final String LABEL_COMPONENT  = "Component";
     private static final String LABEL_OTHERS  = "Others";
     private static final String LABEL_OBJECT  = "Object";
+    private static final String ERROR_MESSAGE = "ERROR_MESSAGE";
+    private static final String INFORMATION_MESSAGE = "INFORMATION_MESSAGE";
+    private static final String WARNING_MESSAGE = "WARNING_MESSAGE";
+    private static final String QUESTION_MESSAGE = "QUESTION_MESSAGE";
+    private static final String PLAIN_MESSAGE = "PLAIN_MESSAGE";
 
     private DialogsPanel typePanel;
     private DialogsPanel messageTypePanel;
@@ -39,7 +44,7 @@ public class DialogsFrame extends JFrame {
         });
 
         messageTypePanel = new DialogsPanel("Message type", new String[]{
-                "ERROR_MESSAGE", "INFORMATION_MESSAGE", "QUESTION_MESSAGE", "PLAIN_MESSAGE"
+                ERROR_MESSAGE, INFORMATION_MESSAGE, WARNING_MESSAGE, QUESTION_MESSAGE, PLAIN_MESSAGE
         });
 
         messagePanel = new DialogsPanel("Message", new String[]{
@@ -78,7 +83,7 @@ public class DialogsFrame extends JFrame {
     }
 
     // Show Message
-    public Object getMessage() {
+    private Object getMessage() {
         String message = messagePanel.getSelection();
 
         switch (message) {
@@ -97,6 +102,25 @@ public class DialogsFrame extends JFrame {
         }
     }
 
+    // Return Icon type
+    private int getIconType() {
+
+        switch (messageTypePanel.getSelection()) {
+            case ERROR_MESSAGE:
+                return JOptionPane.ERROR_MESSAGE;
+            case INFORMATION_MESSAGE:
+                return JOptionPane.INFORMATION_MESSAGE;
+            case WARNING_MESSAGE:
+                return JOptionPane.WARNING_MESSAGE;
+            case QUESTION_MESSAGE:
+                return JOptionPane.QUESTION_MESSAGE;
+            case PLAIN_MESSAGE:
+                return JOptionPane.PLAIN_MESSAGE;
+            default:
+                return JOptionPane.PLAIN_MESSAGE;
+        }
+    }
+
     private class ShowAction implements ActionListener {
 
         @Override
@@ -107,19 +131,19 @@ public class DialogsFrame extends JFrame {
             switch (typePanel.getSelection()) {
                 case "Message":
                     JOptionPane.showMessageDialog(DialogsFrame.this, getMessage(),
-                            "Title", JOptionPane.ERROR_MESSAGE);
+                            "Title", getIconType());
                     break;
                 case "Confirm":
                     JOptionPane.showConfirmDialog(DialogsFrame.this, getMessage(),
-                            "Title", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+                            "Title", JOptionPane.YES_NO_OPTION, getIconType());
                     break;
                 case "Option":
                     JOptionPane.showOptionDialog(DialogsFrame.this, getMessage(),
-                            "Title", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+                            "Title", JOptionPane.YES_NO_OPTION, getIconType(), null, null, null);
                     break;
                 case "Input":
                     JOptionPane.showInputDialog(DialogsFrame.this, getMessage(),
-                            "Title", JOptionPane.ERROR_MESSAGE);
+                            "Title", getIconType());
                     break;
             }
         }
