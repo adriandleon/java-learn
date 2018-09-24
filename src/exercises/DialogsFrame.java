@@ -19,6 +19,10 @@ public class DialogsFrame extends JFrame {
     private static final String WARNING_MESSAGE = "WARNING_MESSAGE";
     private static final String QUESTION_MESSAGE = "QUESTION_MESSAGE";
     private static final String PLAIN_MESSAGE = "PLAIN_MESSAGE";
+    private static final String DEFAULT_OPTION = "DEFAULT_OPTION";
+    private static final String YES_NO_OPTION = "YES_NO_OPTION";
+    private static final String YES_NO_CANCEL_OPTION = "YES_NO_CANCEL_OPTION";
+    private static final String OK_CANCEL_OPTION = "OK_CANCEL_OPTION";
 
     private DialogsPanel typePanel;
     private DialogsPanel messageTypePanel;
@@ -52,7 +56,7 @@ public class DialogsFrame extends JFrame {
         });
 
         optionTypePanel = new DialogsPanel("Options type", new String[]{
-                "DEFAULT_OPTION", "YES_NO_OPTION", "YES_NO_CANCEL_OPTION", "OK_CANCEL_OPTION"
+                DEFAULT_OPTION, YES_NO_OPTION, YES_NO_CANCEL_OPTION, OK_CANCEL_OPTION
         });
 
         optionPanel = new DialogsPanel("Option", new String[]{
@@ -103,9 +107,8 @@ public class DialogsFrame extends JFrame {
     }
 
     // Return Icon type
-    private int getIconType() {
-
-        switch (messageTypePanel.getSelection()) {
+    private int getIconType(final String selection) {
+        switch (selection) {
             case ERROR_MESSAGE:
                 return JOptionPane.ERROR_MESSAGE;
             case INFORMATION_MESSAGE:
@@ -121,6 +124,22 @@ public class DialogsFrame extends JFrame {
         }
     }
 
+    // Return Options type
+    private int getOptionsType(final String selection) {
+        switch (selection) {
+            case DEFAULT_OPTION:
+                return JOptionPane.DEFAULT_OPTION;
+            case YES_NO_OPTION:
+                return JOptionPane.YES_NO_OPTION;
+            case YES_NO_CANCEL_OPTION:
+                return JOptionPane.YES_NO_CANCEL_OPTION;
+            case OK_CANCEL_OPTION:
+                return JOptionPane.OK_CANCEL_OPTION;
+            default:
+                return JOptionPane.DEFAULT_OPTION;
+        }
+    }
+
     private class ShowAction implements ActionListener {
 
         @Override
@@ -131,19 +150,20 @@ public class DialogsFrame extends JFrame {
             switch (typePanel.getSelection()) {
                 case "Message":
                     JOptionPane.showMessageDialog(DialogsFrame.this, getMessage(),
-                            "Title", getIconType());
+                            "Title", getIconType(messageTypePanel.getSelection()));
                     break;
                 case "Confirm":
                     JOptionPane.showConfirmDialog(DialogsFrame.this, getMessage(),
-                            "Title", JOptionPane.YES_NO_OPTION, getIconType());
+                            "Title", getOptionsType(optionTypePanel.getSelection()), getIconType(messageTypePanel.getSelection()));
                     break;
                 case "Option":
                     JOptionPane.showOptionDialog(DialogsFrame.this, getMessage(),
-                            "Title", JOptionPane.YES_NO_OPTION, getIconType(), null, null, null);
+                            "Title", JOptionPane.YES_NO_OPTION, getIconType(messageTypePanel.getSelection()),
+                            null, null, null);
                     break;
                 case "Input":
                     JOptionPane.showInputDialog(DialogsFrame.this, getMessage(),
-                            "Title", getIconType());
+                            "Title", getIconType(messageTypePanel.getSelection()));
                     break;
             }
         }
