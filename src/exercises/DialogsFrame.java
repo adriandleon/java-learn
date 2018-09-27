@@ -7,8 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.util.Date;
 
-public class DialogsFrame extends JFrame {
+class DialogsFrame extends JFrame {
 
+    private static final String IMAGES_PATH = "src/graphics/images/";
     private static final String LABEL_MESSAGE = "String";
     private static final String LABEL_ICON = "Icon";
     private static final String LABEL_COMPONENT  = "Component";
@@ -23,6 +24,14 @@ public class DialogsFrame extends JFrame {
     private static final String YES_NO_OPTION = "YES_NO_OPTION";
     private static final String YES_NO_CANCEL_OPTION = "YES_NO_CANCEL_OPTION";
     private static final String OK_CANCEL_OPTION = "OK_CANCEL_OPTION";
+    private static final String STRING_ARRAY = "String[]";
+    private static final String ICON_ARRAY = "Icon[]";
+    private static final String OBJECT_ARRAY = "Object[]";
+    private static final String TEXT_FIELD = "Text Field";
+    private static final String COMBO_BOX = "Combo Box";
+    private static final String COLOR_1 = "Yellow";
+    private static final String COLOR_2 = "Blue";
+    private static final String COLOR_3 = "Red";
 
     private DialogsPanel typePanel;
     private DialogsPanel messageTypePanel;
@@ -32,11 +41,11 @@ public class DialogsFrame extends JFrame {
     private DialogsPanel inputPanel;
 
     private String stringMessage = "A String message";
-    private Icon iconMessage = new ImageIcon("src/graphics/images/icon.png");
+    private Icon iconMessage = new ImageIcon(IMAGES_PATH + "icon.png");
     private Date dateMessage = new Date();
     private Component componentMessage = new ComponentPanel();
 
-    public DialogsFrame() {
+    DialogsFrame() {
         setTitle("Dialogs Test");
         setBounds(500, 300, 600, 450);
 
@@ -60,11 +69,11 @@ public class DialogsFrame extends JFrame {
         });
 
         optionPanel = new DialogsPanel("Option", new String[]{
-                "String[]", "Icon[]", "Object[]"
+                STRING_ARRAY, ICON_ARRAY, OBJECT_ARRAY
         });
 
         inputPanel = new DialogsPanel("Input", new String[]{
-                "Text Field", "Combo Box"
+                TEXT_FIELD, COMBO_BOX
         });
 
         setLayout(new BorderLayout());
@@ -140,6 +149,24 @@ public class DialogsFrame extends JFrame {
         }
     }
 
+    // Return Object[] options
+    private Object[] getOptionObjects(final String selection) {
+        switch (selection) {
+            case STRING_ARRAY:
+                return new String[] {COLOR_1, COLOR_2, COLOR_3};
+            case ICON_ARRAY:
+                return new Object[] {
+                        new ImageIcon(IMAGES_PATH + "plus5.png"),
+                        new ImageIcon(IMAGES_PATH + "red_icon.png"),
+                        new ImageIcon(IMAGES_PATH + "icon.png")
+                };
+            case OBJECT_ARRAY:
+                return new Object[] { stringMessage, iconMessage, componentMessage, dateMessage };
+            default:
+                return null;
+        }
+    }
+
     private class ShowAction implements ActionListener {
 
         @Override
@@ -150,20 +177,31 @@ public class DialogsFrame extends JFrame {
             switch (typePanel.getSelection()) {
                 case "Message":
                     JOptionPane.showMessageDialog(DialogsFrame.this, getMessage(),
-                            "Title", getIconType(messageTypePanel.getSelection()));
+                            "showMessageDialog", getIconType(messageTypePanel.getSelection()));
                     break;
                 case "Confirm":
                     JOptionPane.showConfirmDialog(DialogsFrame.this, getMessage(),
-                            "Title", getOptionsType(optionTypePanel.getSelection()), getIconType(messageTypePanel.getSelection()));
+                            "showConfirmDialog", getOptionsType(optionTypePanel.getSelection()),
+                            getIconType(messageTypePanel.getSelection()));
                     break;
                 case "Option":
                     JOptionPane.showOptionDialog(DialogsFrame.this, getMessage(),
-                            "Title", JOptionPane.YES_NO_OPTION, getIconType(messageTypePanel.getSelection()),
-                            null, null, null);
+                            "showOptionDialog", JOptionPane.YES_NO_CANCEL_OPTION,
+                            getIconType(messageTypePanel.getSelection()),
+                            null, getOptionObjects(optionPanel.getSelection()), null);
                     break;
                 case "Input":
-                    JOptionPane.showInputDialog(DialogsFrame.this, getMessage(),
-                            "Title", getIconType(messageTypePanel.getSelection()));
+
+                    if (inputPanel.getSelection().equals(TEXT_FIELD)) {
+                        JOptionPane.showInputDialog(DialogsFrame.this, getMessage(),
+                                "showInputDialog", getIconType(messageTypePanel.getSelection()));
+                    } else {
+                        JOptionPane.showInputDialog(DialogsFrame.this, getMessage(),
+                                "showInputDialog", getIconType(messageTypePanel.getSelection()), null,
+                                new String[] {
+                                        COLOR_1, COLOR_2, COLOR_3
+                                }, COLOR_2);
+                    }
                     break;
             }
         }
