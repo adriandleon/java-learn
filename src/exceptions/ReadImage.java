@@ -33,19 +33,17 @@ class ImagePanel extends JPanel {
 
     ImagePanel() {
         try {
-            mImage = ImageIO.read(new File("src/graphics/images/plus5.png"));
+            mImage = ImageIO.read(new File("src/grapdhics/images/plus5.png"));
         } catch (IOException e) {
             System.out.println("Image file not found");
         }
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) throws NullPointerException {
         super.paintComponent(g);
 
-        if (mImage == null) {
-            g.drawString("Cannot show the image", 10, 20);
-        } else {
+        try {
             int width = mImage.getWidth(this);
             int height = mImage.getHeight(this);
 
@@ -58,6 +56,8 @@ class ImagePanel extends JPanel {
             }
 
             g.drawImage(mImage, 0, 0, null);
+        } catch (NullPointerException e) {
+            g.drawString("Cannot show the image", 10, 20);
         }
     }
 }
