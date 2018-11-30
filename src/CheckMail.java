@@ -1,5 +1,6 @@
+import exceptions.EmailLengthException;
+
 import javax.swing.*;
-import java.io.EOFException;
 
 public class CheckMail {
 
@@ -9,18 +10,18 @@ public class CheckMail {
 
         try {
             checkEmail(email);
-        } catch (EOFException e) {
-            System.out.println("The length of the email address is too short.");
+        } catch (EmailLengthException e) {
+            System.out.println(e.getMessage());
         }
 
     }
 
-    private static void checkEmail(String email) throws EOFException {
+    private static void checkEmail(String email) throws EmailLengthException {
         int at = 0;
         boolean dot = false;
 
         if (email.length() <= 3) {
-            throw new EOFException();
+            throw new EmailLengthException("Email address is too short.");
         }
 
         for (int i = 0; i < email.length(); i++) {
